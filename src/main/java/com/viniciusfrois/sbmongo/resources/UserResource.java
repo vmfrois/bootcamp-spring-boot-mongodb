@@ -1,6 +1,7 @@
 package com.viniciusfrois.sbmongo.resources;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.viniciusfrois.sbmongo.domain.User;
+import com.viniciusfrois.sbmongo.dto.UserDTO;
 import com.viniciusfrois.sbmongo.services.UserService;
 
 @RestController
@@ -19,8 +21,13 @@ public class UserResource {
 	private UserService service;
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<List<User>> findAll(){
+	public ResponseEntity<List<UserDTO>> findAll(){
 		List<User> list = service.findAll();
-		return ResponseEntity.ok().body(list);
+		List<UserDTO> listDto = list.stream().map(x -> new UserDTO(x)).collect(Collectors.toList());
+		/* explicando a expressao lambda = para cada objeto ' x ' da minha lista original, 
+			ele vai retornar um new UserDTO() passando o ' x ' como argumento
+			obs: na classe UserDTO passamos a entidade User como parametro do construtor
+		*/
+		return ResponseEntity.ok().body(listDto);
 	}
 }
