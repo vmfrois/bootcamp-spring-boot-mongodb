@@ -1,11 +1,14 @@
 package com.viniciusfrois.sbmongo.domain;
 
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.viniciusfrois.sbmongo.dto.AuthorDTO;
+import com.viniciusfrois.sbmongo.dto.CommentDTO;
 
 @Document
 public class Post {
@@ -16,6 +19,8 @@ public class Post {
 	private String title;
 	private String body;
 	private AuthorDTO author;
+	
+	private List<CommentDTO> comments = new ArrayList<>();
 	
 	
 	public Post() {
@@ -67,6 +72,14 @@ public class Post {
 	}
 	public void setAuthor(AuthorDTO author) {
 		this.author = author;
+	}
+	
+	
+	public List<CommentDTO> getComments() {
+		return comments;
+	}
+	public void setComments(List<CommentDTO> comments) {
+		this.comments = comments;
 	}
 	
 	
