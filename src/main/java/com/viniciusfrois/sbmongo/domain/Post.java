@@ -1,7 +1,7 @@
 package com.viniciusfrois.sbmongo.domain;
 
-import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
@@ -15,7 +15,7 @@ public class Post {
 
 	@Id
 	private String id;
-	private Instant date;
+	private Date date;
 	private String title;
 	private String body;
 	private AuthorDTO author;
@@ -25,7 +25,7 @@ public class Post {
 	
 	public Post() {
 	}
-	public Post(String id, Instant date, String title, String body, AuthorDTO author) {
+	public Post(String id, Date date, String title, String body, AuthorDTO author) {
 		super();
 		this.id = id;
 		this.date = date;
@@ -43,10 +43,10 @@ public class Post {
 	}
 	
 	
-	public Instant getDate() {
+	public Date getDate() {
 		return date;
 	}
-	public void setDate(Instant date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 
